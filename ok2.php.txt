@@ -1,0 +1,18 @@
+<?php
+$id = 'DuySexyy';
+$token = array('','','',....); // danh sách các mã token, l?y t?i http://HotFB.Org
+$tokenshare = $listoken[rand(0,count($listoken)-1)]; // random token share m?i l?n cron
+$DS=json_decode(DS('https://graph.facebook.com/'.$id.'/feed?access_token='.$token.'&limit=1'),true); // get status g?n nh?t
+for($i=1;$i<=count($DS[data]);$i++){
+set_time_limit(0);
+echo DS('https://graph.facebook.com/'.$DS[data][$i-1][id].'/sharedposts?method=post&access_token='.$tokenshare.'');
+}
+function DS($url){
+$data = curl_init();
+curl_setopt($data, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($data, CURLOPT_URL, $url);
+$hasil = curl_exec($data);
+curl_close($data);
+return $hasil;
+}
+?>
